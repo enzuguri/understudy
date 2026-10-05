@@ -24,8 +24,10 @@ understudy/
 ├── skills/                     # Portable Agent Skills
 ├── agents/                     # Cursor + Claude Code custom agents
 ├── rules/                      # Cursor always-on rules
-├── .cursor-plugin/plugin.json  # Cursor Plugin manifest
-└── .claude-plugin/plugin.json  # Claude Code plugin manifest
+├── .cursor-plugin/plugin.json       # Cursor Plugin manifest
+├── .cursor-plugin/marketplace.json  # Cursor local-folder / marketplace catalog
+├── .claude-plugin/plugin.json       # Claude Code plugin manifest
+└── .claude-plugin/marketplace.json  # Claude Code marketplace catalog
 ```
 
 Portable clients discover `plugin.json` and `skills/`. Agents and rules are outside Agent Plugins v1; they load only through the Cursor and Claude Code manifests.
@@ -34,11 +36,13 @@ Portable clients discover `plugin.json` and `skills/`. Agents and rules are outs
 
 ### Cursor
 
-Copy or clone this repository to `~/.cursor/plugins/local/understudy`, then reload the window. Confirm skills, agents, and rules appear under Customize. Team marketplaces can also import the repo; Cursor detects Agent Plugins from root `plugin.json` and Cursor-specific components from `.cursor-plugin/plugin.json`.
+In Customize, add this repository as a local marketplace folder (Cursor looks for `.cursor-plugin/marketplace.json`). Then install the `understudy` plugin from that catalog and confirm skills, agents, and rules appear.
+
+Alternatively copy the repo to `~/.cursor/plugins/local/understudy` and reload the window.
 
 ### Claude Code
 
-Load the plugin directory with `--plugin-dir /path/to/understudy`, or add it to a marketplace whose `.claude-plugin/marketplace.json` points at this folder. Enable the plugin, then confirm agents and skills with `claude plugin details understudy`.
+Add this directory as a marketplace (`claude plugin marketplace add /path/to/understudy`), then `claude plugin install understudy@understudy`. Or load it with `--plugin-dir`. Confirm agents and skills with `claude plugin details understudy`.
 
 ### Other Agent Plugins clients
 
