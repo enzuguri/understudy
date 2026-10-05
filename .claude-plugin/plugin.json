@@ -1,0 +1,14 @@
+{
+  "name": "understudy",
+  "version": "0.1.0",
+  "description": "Context-firewall skills and custom agents for Cursor and Claude Code",
+  "author": {
+    "name": "Alex Fell"
+  },
+  "repository": "https://github.com/enzuguri/understudy",
+  "keywords": [
+    "agents",
+    "skills",
+    "context management"
+  ]
+}
