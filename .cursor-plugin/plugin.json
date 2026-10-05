@@ -10,5 +10,6 @@
     "agents",
     "skills",
     "context management"
-  ]
+  ],
+  "hooks": "./hooks/com.cursor/hooks.json"
 }

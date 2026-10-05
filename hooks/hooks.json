@@ -1,0 +1,16 @@
+{
+  "description": "Inject the body of skills/session-start/SKILL.md when a session starts.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/session-start.cjs\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
