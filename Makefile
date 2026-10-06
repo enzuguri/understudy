@@ -1,5 +1,11 @@
 WORKING_DIR = $(shell pwd)
 PART ?= patch
+VERSION_FILES = \
+	plugin.json \
+	.cursor-plugin/plugin.json \
+	.claude-plugin/plugin.json \
+	.cursor-plugin/marketplace.json \
+	.claude-plugin/marketplace.json
 
 # tiktoken is OpenAI's tokenizer, so counts approximate Claude's — fine for relative cost between files.
 count-tokens: FILE ?= $(WORKING_DIR)
@@ -13,9 +19,4 @@ bump-version: ## Bump plugin manifest versions with bumpp. PART=patch|minor|majo
 	  patch|minor|major) ;; \
 	  *) echo "PART must be patch, minor, or major (got $(PART))" >&2; exit 1 ;; \
 	esac
-	npx -y bumpp@11.1.0 --yes --no-commit --no-tag --no-push --ignore-scripts --release "$(PART)" \
-	  plugin.json \
-	  .cursor-plugin/plugin.json \
-	  .claude-plugin/plugin.json \
-	  .cursor-plugin/marketplace.json \
-	  .claude-plugin/marketplace.json
+	npx -y bumpp@11.1.0 --yes --no-commit --no-tag --no-push --ignore-scripts --release "$(PART)" $(VERSION_FILES)
