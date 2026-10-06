@@ -1,6 +1,6 @@
 ---
 name: discover-repo-map
-description: Builds a repo-level orientation map — runtime and build system, entry points, conventions (naming, imports, error handling, logging, tests), hotspots from git history, and repo-wide gotchas — and caches it at `.agents/context/repo-map.md`. Invoke on first work in an unfamiliar repo or when that cache is stale. Repo-level and cached; task-specific orientation ("where do I change X?") is `orient-agent`, which reads this cache.
+description: Builds a repo-level orientation map — runtime and build system, frameworks, entry points, conventions (naming, imports, error handling, logging, tests), hotspots from git history, and repo-wide gotchas — and caches it at `.agents/context/repo-map.md`. Invoke on first work in an unfamiliar repo or when that cache is stale. Repo-level and cached; task-specific orientation ("where do I change X?") is `orient-agent`, which reads this cache.
 context: fork
 agent: orient-agent
 ---
@@ -53,18 +53,32 @@ git log --since=90.days --name-only --format= | sort | uniq -c | sort -rn | head
 Read the structural anchors that exist. Infer: runtime and version, package
 manager, build system, path aliases, monorepo/workspace layout.
 
-### 3. Entry points
+### 3. Frameworks
+Read `references/frameworks.md` (relative to this skill's base directory) and match it
+against the manifests already read in step 2. That reference is part of this skill,
+so the Read does not consume the 5-Read source budget.
+
+A catalog row matches only when its manifest signal is present. In a workspace,
+match every package manifest the root declares; those reads are structural anchors.
+A confirm pattern or directory in the catalog supports a manifest hit. It is not
+a match on its own, and identity comes from the manifest signal.
+
+Record every matching row. A dependency you recognize as an application, HTTP,
+RPC, or CLI framework with no catalog row is `unlisted`: record the package name
+and the manifest, and leave its entry-point pattern unset. When no row matches
+and nothing is unlisted, record `n/a — searched <manifest paths>`.
+
+### 4. Entry points
 Find the edges of the graph, don't sample random files:
 ```bash
 fd -e ts -e js -e py 'main|index|server|app|cli' --type f -E node_modules
 ```
-Framework-specific:
-- Next.js: `app/`, `pages/`
-- Express/Fastify: router registration (`$APP.use($$$)`, `$ROUTER.$METHOD($$$)`)
-- tRPC: `router(` pattern
-- CLI tools: `bin/`, `[project.scripts]` / `"bin"` in manifests
+Then apply the entry-point pattern from `references/frameworks.md` for each catalog
+framework recorded in this run. When Frameworks is `n/a — searched <manifest paths>`,
+or contains only `unlisted` rows, record `entry-point patterns: none applied` and
+stop after the generic search.
 
-### 4. Conventions
+### 5. Conventions
 Infer from existing code — never assume. Sample from hotspot files (they reflect
 current style, not legacy), plus one test file. Use `rg` first to choose samples:
 - Naming: files, functions, types
@@ -77,7 +91,7 @@ If `references/project-conventions.md` (relative to this skill's base directory)
 would help on an unusual stack,
 read it; otherwise skip it.
 
-### 5. Repo-wide gotchas
+### 6. Repo-wide gotchas
 ```bash
 rg -c 'TODO|FIXME|HACK|XXX' -g '!node_modules' | sort -t: -k2 -rn | head -10
 ```
@@ -111,8 +125,14 @@ sources:
 - Layout: <single package | workspaces: list>
 - Path aliases: <...>
 
+## Frameworks
+- `<name>` — <role> — evidence: `<manifest>` (`<dependency or field>`)
+- `unlisted — <package> — <manifest>`
+- `n/a — searched <manifest paths>`
+
 ## Entry Points
 - `<path>` — <what it starts / serves>
+- entry-point patterns: <catalog patterns applied, or `none applied`>
 
 ## Conventions
 - Naming: ...
@@ -130,6 +150,9 @@ sources:
 
 Write `n/a — <what you searched>` for a section that genuinely has nothing; never
 omit a section. Cite a sampled `file:line` for each convention you infer from code.
+The Frameworks bullets are line shapes: one bullet per match or `unlisted`
+package, and the `n/a — searched` bullet only when both of those are empty.
+Every framework config file used as evidence is listed under `sources:`.
 
 After writing, re-read the file and confirm `git_sha` matches HEAD and every
 `sources:` entry exists.

@@ -71,8 +71,9 @@ git log --oneline -10 -- <paths the task names or the repo map points to>
 Recent changes in the task area reveal *why* the code is shaped the way it is faster than reading it.
 
 ### 2. Task entry point
-Start from the repo map's Entry Points and follow inward to where this feature or
-flow begins. Don't sweep directories.
+Start from the repo map's Frameworks and Entry Points and follow inward to where
+this feature or flow begins. The cached framework names are the detection. Don't
+sweep directories.
 
 ### 3. Trace relationships
 For each symbol central to the task, invoke `trace-symbol <symbol> [path]`. Pass
@@ -109,6 +110,7 @@ carry only what's relevant to the task — never paste a cache wholesale.
 
 ### Repo Context
 - repo-map: <fresh | rebuilt | skipped (why)> · `.agents/context/repo-map.md`
+- frameworks: <names from the repo-map Frameworks section, or n/a> · `.agents/context/repo-map.md`
 - boundaries: <fresh | rebuilt | skipped (why)> · `.agents/context/boundaries.md`
 
 ### Entry Points
