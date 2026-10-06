@@ -20,17 +20,20 @@ This repository follows [Agent Plugins 1.0](https://agent-plugins.org/specificat
 
 ```text
 understudy/
-├── plugin.json                 # Agent Plugins 1.0 manifest
-├── skills/                     # Portable Agent Skills
-├── agents/                     # Cursor + Claude Code custom agents
-├── rules/                      # Cursor always-on rules
+├── plugin.json                      # Agent Plugins 1.0 manifest
+├── skills/                          # Portable Agent Skills
+├── agents/                          # Cursor + Claude Code custom agents
+├── rules/                           # Cursor always-on rules
+├── hooks/hooks.json                 # Claude Code / Codex session-start hook
+├── hooks/com.cursor/hooks.json      # Cursor session-start hook
+├── hooks/session-start.cjs          # Injects the session-start skill body
 ├── .cursor-plugin/plugin.json       # Cursor Plugin manifest
 ├── .cursor-plugin/marketplace.json  # Cursor local-folder / marketplace catalog
 ├── .claude-plugin/plugin.json       # Claude Code plugin manifest
 └── .claude-plugin/marketplace.json  # Claude Code marketplace catalog
 ```
 
-Portable clients discover `plugin.json` and `skills/`. Agents and rules are outside Agent Plugins v1; they load only through the Cursor and Claude Code manifests.
+Portable clients discover `plugin.json` and `skills/`. Agents, rules, and hooks are outside Agent Plugins v1. Claude Code and Codex auto-load `hooks/hooks.json`. Cursor loads `hooks/com.cursor/hooks.json` from `.cursor-plugin/plugin.json`. Do not also list `hooks/hooks.json` on the Claude manifest; that path is loaded automatically.
 
 ## Installation
 
@@ -52,6 +55,7 @@ Point the client at this directory. It MUST load root `plugin.json` (`$schema` `
 
 | Kind | Location | Role |
 | --- | --- | --- |
-| Skills | `skills/` | Delegation playbooks, discovery caches, review/PR routing, revoice |
+| Skills | `skills/` | Delegation playbooks, discovery caches, review/PR routing, revoice, session-start |
 | Agents | `agents/` | Context-firewall subagents (`git-agent`, `log-reader`, `verification-agent`, …) |
 | Rules | `rules/` | Always-on style, tooling, error-handling, and hard constraints (Cursor) |
+| Hooks | `hooks/` | Session start injects the body of `skills/session-start/SKILL.md` on Claude Code, Codex, and Cursor |

@@ -1,0 +1,10 @@
+{
+  "description": "Inject the body of skills/session-start/SKILL.md when a composer session starts.",
+  "hooks": {
+    "sessionStart": [
+      {
+        "command": "node ./hooks/session-start.cjs --host=cursor"
+      }
+    ]
+  }
+}
