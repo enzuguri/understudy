@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "understudy",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Context-firewall skills and custom agents for Cursor and Claude Code",
   "author": {
     "name": "Alex Fell"
