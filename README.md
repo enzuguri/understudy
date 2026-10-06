@@ -51,6 +51,26 @@ Add this directory as a marketplace (`claude plugin marketplace add /path/to/und
 
 Point the client at this directory. It MUST load root `plugin.json` (`$schema` `https://agent-plugins.org/schemas/1.0.0/plugin.schema.json`) and discover skills from `skills/*/SKILL.md`. There is no `mcp.json`; MCP is optional and omitted on purpose.
 
+## Versioning
+
+Plugin clients refresh when the version in the manifests changes. Bump every manifest together with [bumpp](https://github.com/antfu-collective/bumpp):
+
+```sh
+make bump-version                 # patch, the default
+make bump-version PART=minor
+make bump-version PART=major
+```
+
+`PART` is `patch`, `minor`, or `major`. The target updates the version in:
+
+- `plugin.json`
+- `.cursor-plugin/plugin.json`
+- `.cursor-plugin/marketplace.json`
+- `.claude-plugin/plugin.json`
+- `.claude-plugin/marketplace.json`
+
+It does not commit, tag, or push. Review the diff and commit it yourself.
+
 ## Components
 
 | Kind | Location | Role |
