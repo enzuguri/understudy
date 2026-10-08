@@ -106,7 +106,7 @@ peers:
     slack_id: U123ABC
     messages_fetched: 14
     signal: High
-    topics: [OpenSearch, consolidation, CIS events]
+    topics: [OpenSearch, consolidation, events]
   - name: Bob
     slack_id: U456DEF
     messages_fetched: 0
@@ -126,7 +126,7 @@ channels:
 ### {Peer Name}
 **Topics:** topic1, topic2, topic3
 **Signal:** Medium
-**Summary:** What they worked on, with [a link](https://miro.slack.com/archives/...) to any message worth following up on.
+**Summary:** What they worked on, with [a link](https://example.slack.com/archives/...) to any message worth following up on.
 
 ### Quiet this period
 - Name (no messages on YYYY-MM-DD)
@@ -137,7 +137,7 @@ channels:
 
 ### #{channel-name}
 **Themes:** theme1, theme2, theme3
-- Key discussion or decision, with [link](https://miro.slack.com/archives/...) to the thread
+- Key discussion or decision, with [link](https://example.slack.com/archives/...) to the thread
 - Open question or RFC in flight
 
 ---
