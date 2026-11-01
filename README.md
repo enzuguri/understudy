@@ -2,6 +2,10 @@
 
 A plugin for context management and firewalls when using agent harnesses, tailored to Alex Fell's tastes.
 
+## Manifesto
+
+[MANIFESTO.md](MANIFESTO.md) states what Understudy optimises for: firewalls over fluency, compact returns, and a capped always-on core that still carries the hard constraints. Background from the October 2026 research spikes: [docs/research/SUMMARY.md](docs/research/SUMMARY.md).
+
 ## Motivation
 
 Agent contexts can get quite large when everything runs in the main orchestration thread. There are a large category of activities that do not need to run in the main context and can be fanned out to sub-agents.
