@@ -1,0 +1,1 @@
+{"mcpServers": {"brain": {"command": "sh", "args": ["-c", "exec npx -y @bitbonsai/mcpvault@latest \"$HOME/.understudy/brain\" --read-only"]}}}

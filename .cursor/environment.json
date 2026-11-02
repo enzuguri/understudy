@@ -1,0 +1,1 @@
+{"install": "sh ./.cursor/brain-setup.sh || true", "start": "sh ./.cursor/brain-setup.sh || true"}
