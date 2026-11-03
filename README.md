@@ -4,7 +4,7 @@ A plugin for context management and firewalls when using agent harnesses, tailor
 
 ## Manifesto
 
-[MANIFESTO.md](MANIFESTO.md) states what Understudy optimises for: firewalls over fluency, compact returns, and a capped always-on core that still carries the hard constraints. Background from the October 2026 research spikes: [docs/research/SUMMARY.md](docs/research/SUMMARY.md).
+[MANIFESTO.md](MANIFESTO.md) states what Understudy optimises for: firewalls over fluency, compact returns, and a capped always-on core that still carries the hard constraints.
 
 ## Motivation
 
@@ -83,3 +83,5 @@ It does not commit, tag, or push. Review the diff and commit it yourself.
 | Agents | `agents/` | Context-firewall subagents (`git-agent`, `log-reader`, `verification-agent`, …) |
 | Rules | `rules/` | Always-on style, tooling, error-handling, and hard constraints (Cursor) |
 | Hooks | `hooks/` | Session start injects the body of `skills/session-start/SKILL.md` on Claude Code, Codex, and Cursor |
+
+Agent-oriented notes (discovery caches, logs, spike write-ups) live under `.agents/` — for example `.agents/research/SUMMARY.md` for the Oct 2026 R1–R4 spikes.
