@@ -3,7 +3,8 @@
   "mcpServers": {
     "brain": {
       "type": "stdio",
-      "command": "./scripts/brain-mcp.sh"
+      "command": "sh",
+      "args": ["${PLUGIN_ROOT}/scripts/brain-mcp.sh"]
     }
   }
 }

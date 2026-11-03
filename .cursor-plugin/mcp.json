@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "brain": {
+      "type": "stdio",
+      "command": "sh",
+      "args": ["${CURSOR_PLUGIN_ROOT}/scripts/brain-mcp.sh"]
+    }
+  }
+}

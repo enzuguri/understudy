@@ -23,16 +23,16 @@ resolve_brain_dir() {
     fi
   fi
 
+  if [ -d "./.brain" ]; then
+    log "Using ./.brain (cwd=$(pwd))"
+    printf '%s\n' "./.brain"
+    return
+  fi
+
   default_brain="${HOME}/.understudy/brain"
   if [ -d "$default_brain" ]; then
     log "Using ${default_brain}"
     printf '%s\n' "$default_brain"
-    return
-  fi
-
-  if [ -d "./.brain" ]; then
-    log "Using ./.brain (cwd=$(pwd))"
-    printf '%s\n' "./.brain"
     return
   fi
 
