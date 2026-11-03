@@ -1,6 +1,6 @@
 {
   "name": "understudy",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Context-firewall skills and custom agents for Cursor and Claude Code",
   "author": {
     "name": "Alex Fell"
@@ -12,5 +12,5 @@
     "context management"
   ],
   "hooks": "./hooks/com.cursor/hooks.json",
-  "mcpServers": "./mcp.json"
+  "mcpServers": "./.cursor-plugin/mcp.json"
 }

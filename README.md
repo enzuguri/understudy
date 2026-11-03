@@ -25,6 +25,8 @@ This repository follows [Agent Plugins 1.0](https://agent-plugins.org/specificat
 ```text
 understudy/
 ├── plugin.json                      # Agent Plugins 1.0 manifest
+├── mcp.json                         # Agent Plugins MCP (brain server; ${PLUGIN_ROOT})
+├── scripts/brain-mcp.sh             # Resolves brain dir; launches read-only MCPVault
 ├── skills/                          # Portable Agent Skills
 ├── agents/                          # Cursor + Claude Code custom agents
 ├── rules/                           # Cursor always-on rules
@@ -32,6 +34,7 @@ understudy/
 ├── hooks/com.cursor/hooks.json      # Cursor session-start hook
 ├── hooks/session-start.cjs          # Injects the session-start skill body
 ├── .cursor-plugin/plugin.json       # Cursor Plugin manifest
+├── .cursor-plugin/mcp.json          # Cursor MCP (brain server; ${CURSOR_PLUGIN_ROOT})
 ├── .cursor-plugin/marketplace.json  # Cursor local-folder / marketplace catalog
 ├── .claude-plugin/plugin.json       # Claude Code plugin manifest
 └── .claude-plugin/marketplace.json  # Claude Code marketplace catalog
@@ -53,7 +56,7 @@ Add this directory as a marketplace (`claude plugin marketplace add /path/to/und
 
 ### Other Agent Plugins clients
 
-Point the client at this directory. It MUST load root `plugin.json` (`$schema` `https://agent-plugins.org/schemas/1.0.0/plugin.schema.json`) and discover skills from `skills/*/SKILL.md`. There is no `mcp.json`; MCP is optional and omitted on purpose.
+Point the client at this directory. It MUST load root `plugin.json` (`$schema` `https://agent-plugins.org/schemas/1.0.0/plugin.schema.json`) and discover skills from `skills/*/SKILL.md`. Optional MCP: root `mcp.json` registers the read-only `brain` server (path via `${PLUGIN_ROOT}`). Cursor installs use `.cursor-plugin/mcp.json` instead (`${CURSOR_PLUGIN_ROOT}`).
 
 ## Versioning
 
